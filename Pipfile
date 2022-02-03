@@ -8,6 +8,7 @@ dvc = {extras = ["gdrive"], version = "*"}
 pandas = "*"
 numpy = "*"
 sklearn = "*"
+openpyxl = "*"
 
 [dev-packages]
 
