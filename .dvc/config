@@ -1,4 +1,6 @@
 [core]
-    remote = raw_storage
+    remote = dataset_storage
 ['remote "raw_storage"']
     url = gdrive://1ZFIPhX4ZJ8UoPa-BqincGY77mI5Rhuoa
+['remote "dataset_storage"']
+    url = gdrive://1I680q6HvPqcxbNJ8qnQ01c1pKIJIS74g
