@@ -1,0 +1,50 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python3 prepare.py ../data/dataset.csv
+    deps:
+    - path: ../data/dataset.csv
+      md5: e35c72dffd1f468ae8997050e7db10ac
+      size: 36181
+    - path: prepare.py
+      md5: b4ebb7cf87892f9777dd81097cb1486c
+      size: 773
+    outs:
+    - path: ../data/prepared
+      md5: b926a464e66622558600886f9d55d672.dir
+      size: 31681
+      nfiles: 4
+  training:
+    cmd: python3 train.py ../data/dataset.csv
+    deps:
+    - path: ../data/prepared
+      md5: b926a464e66622558600886f9d55d672.dir
+      size: 31681
+      nfiles: 4
+    - path: train.py
+      md5: f844f8dcd5c1177330c619a3cf4d409f
+      size: 891
+    outs:
+    - path: ../assets/models
+      md5: 04cdb4343cb4a13defe157259d813016.dir
+      size: 1174423
+      nfiles: 1
+  evaluating:
+    cmd: python3 evaluate.py ../data/prepared ../assets/metrics
+    deps:
+    - path: ../assets/models
+      md5: 04cdb4343cb4a13defe157259d813016.dir
+      size: 1174423
+      nfiles: 1
+    - path: ../data/prepared
+      md5: b926a464e66622558600886f9d55d672.dir
+      size: 31681
+      nfiles: 4
+    - path: evaluate.py
+      md5: 101b1adfbcdfefa9ba074c0af691ba3e
+      size: 660
+    outs:
+    - path: ../assets/metrics
+      md5: 5f2ede942a3e87263909df13547d87e6.dir
+      size: 61
+      nfiles: 1

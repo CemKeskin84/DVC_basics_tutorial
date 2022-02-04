@@ -1,0 +1,23 @@
+stages:
+  prepare:
+    cmd: python3 prepare.py ../data/dataset.csv
+    deps:
+    - ../data/dataset.csv
+    - prepare.py
+    outs:
+    - ../data/prepared
+  training:
+    cmd: python3 train.py ../data/dataset.csv
+    deps:
+    - ../data/prepared
+    - train.py
+    outs:
+    - ../assets/models
+  evaluating:
+    cmd: python3 evaluate.py ../data/prepared ../assets/metrics
+    deps:
+    - ../assets/models
+    - ../data/prepared
+    - evaluate.py
+    outs:
+    - ../assets/metrics
